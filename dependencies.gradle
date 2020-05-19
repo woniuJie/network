@@ -1,0 +1,82 @@
+def supportVersion = "25.4.0"
+def retrofitVersion = "2.3.0"
+def rxJavaVersion = "2.1.1"
+def rxAndroidVersion = "2.0.1"
+def okhttpVersion = "3.11.0"
+def stethoVersion = "1.5.0"
+def fastjsonVersion = "1.1.68.android"
+def converterFastjsonAndroidVersion = "2.1.0"
+def happyDnsVersion = "0.2.13"
+def constraintLayoutVersion = "1.0.2"
+def multidexVersion = "1.0.1"
+def gsonVersion = "2.8.2"
+
+project.ext {
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 16,
+            targetSdkVersion : 22,
+            applicationId    : "",
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+//    为了规范，约束此文件风格
+//    dependencies数组中命名风格
+//    gradle第三方依赖组成规则，groupId:artifactId:version
+//    key为artifactId，value正常填写，version抽取变量
+    dependencies = [
+            //android-support
+            "support-v4"                 : "com.android.support:support-v4:${supportVersion}",
+            "appcompat-v7"               : "com.android.support:appcompat-v7:${supportVersion}",
+            "design"                     : "com.android.support:design:${supportVersion}",
+            "recyclerview"               : "com.android.support:recyclerview-v7:${supportVersion}",
+            "cardview"                   : "com.android.support:cardview-v7:${supportVersion}",
+            "percent"                    : "com.android.support:percent:${supportVersion}",
+            "constraint-layout"          : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            "multidex"                   : "com.android.support:multidex:${multidexVersion}",
+
+            //rx
+            "rxjava"                     : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+
+            //retrofit
+            "retrofit"                   : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            "adapter-rxjava"             : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            "converter-scalars"          : "com.squareup.retrofit2:converter-scalars:${retrofitVersion}",
+            "converter-gson"             : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+
+            //facebook stetho
+            "stetho"                     : "com.facebook.stetho:stetho:${stethoVersion}",
+            "stetho-okhttp3"             : "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
+
+            // okhttp
+            "okhttp"                     : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            "mockwebserver"              : "com.squareup.okhttp3:mockwebserver:${okhttpVersion}",   // 假数据模拟
+            "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",    // log for okhttp
+
+            // fastjson序列化
+            "fastjson"                   : "com.alibaba:fastjson:${fastjsonVersion}",
+            "converter-fastjson-android" : "org.ligboy.retrofit2:converter-fastjson-android:${converterFastjsonAndroidVersion}",
+
+            // gson序列化
+            "gson"                       : "com.google.code.gson:gson:${gsonVersion}",
+
+            // dns
+            "happy-dns"                  : "com.qiniu:happy-dns:${happyDnsVersion}",
+
+            // test
+            "junit"                      : "junit:junit:4.12",
+            "espresso-core"              : "com.android.support.test.espresso:espresso-core:3.0.1",
+            "runner"                     : "com.android.support.test:runner:1.0.1",
+
+    ]
+
+    /**
+     * 指定使用源码编译还是使用maven仓库 true --> 源码编译， false --> maven仓库，
+     * 这个变量提交代码前必须为false，否则Jenkins不能正常打包
+     */
+    sourceBuild = true
+
+}
